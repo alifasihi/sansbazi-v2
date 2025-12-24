@@ -11,9 +11,9 @@ import Header from './components/Header'
 
 export default function App(){
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-lightBg via-slate-50 to-slate-100">
       <Header />
-      <main className="flex-1 container mx-auto px-4 py-6">
+      <main className="flex-1 container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/list" element={<List/>} />

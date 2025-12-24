@@ -1,4 +1,5 @@
 import React from 'react'
+import { CalendarDaysIcon } from '@heroicons/react/24/solid'
 
 function toJalaliDay(date){
   // returns object {weekday, day, month}
@@ -29,16 +30,18 @@ export default function WeekDaysBar({ selectedDate, onSelect }){
   const plainSelected = toPlainDate(selectedDate)
 
   return (
-    <div className="overflow-x-auto">
-      <div className="flex gap-3 items-center">
+    <div className="overflow-x-auto pb-2">
+      <div className="flex gap-4 items-center">
         {days.map((d, idx)=>{
           const {weekday, day, month} = toJalaliDay(d)
           const isSelected = plainSelected && (d.toDateString() === plainSelected.toDateString())
+          const isToday = d.toDateString() === today.toDateString()
           return (
-            <button key={idx} onClick={()=>onSelect(d)} className={`min-w-[96px] flex flex-col items-center p-3 rounded transition ${isSelected ? 'bg-sportBlue text-white' : 'bg-white hover:shadow-lg'}`}>
-              <div className="text-sm text-slate-500">{weekday}</div>
-              <div className="text-lg font-bold">{day}</div>
-              <div className="text-xs text-slate-400">{month}</div>
+            <button key={idx} onClick={()=>onSelect(d)} className={`min-w-[100px] flex flex-col items-center p-4 rounded-2xl transition-all duration-300 transform hover:scale-105 animate-fade-in shadow-lg hover:shadow-xl border-2 ${isSelected ? 'bg-gradient-to-br from-modernBlue to-sportBlue text-white border-modernBlue' : isToday ? 'bg-gradient-to-br from-yellow-50 to-yellow-100 border-yellow-300 hover:border-yellow-400' : 'bg-white border-slate-200 hover:border-modernBlue'}`} style={{animationDelay: `${idx * 0.1}s`}}>
+              <div className={`text-sm mb-1 ${isSelected ? 'text-white' : 'text-slate-500'}`}>{weekday}</div>
+              <div className={`text-xl font-bold mb-1 ${isSelected ? 'text-white' : 'text-slate-800'}`}>{day}</div>
+              <div className={`text-xs ${isSelected ? 'text-blue-100' : 'text-slate-400'}`}>{month}</div>
+              {isToday && !isSelected && <CalendarDaysIcon className="w-4 h-4 text-yellow-600 mt-1" />}
             </button>
           )
         })}

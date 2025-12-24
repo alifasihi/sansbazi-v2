@@ -4,6 +4,7 @@ import DatePicker from 'react-multi-date-picker'
 import persian from 'react-date-object/calendars/persian'
 import persian_fa from 'react-date-object/locales/persian_fa'
 import locations from '../data/locations.json'
+import { MagnifyingGlassIcon, MapPinIcon, CalendarDaysIcon } from '@heroicons/react/24/solid'
 
 export default function SearchBar(){
   const [city, setCity] = useState('')
@@ -28,35 +29,48 @@ export default function SearchBar(){
   const cityOptions = province ? (locations.find(l=>l.province===province)?.cities || []) : []
 
   return (
-    <form onSubmit={onSearch} className="bg-white rounded-lg p-4 shadow flex flex-col md:flex-row gap-3">
-      <select value={province} onChange={e=>setProvince(e.target.value)} className="p-2 border rounded">
-        <option value="">استان</option>
-        {locations.map((l)=> <option key={l.province} value={l.province}>{l.province}</option>)}
-      </select>
-      <select value={city} onChange={e=>setCity(e.target.value)} className="p-2 border rounded" disabled={!province}>
-        <option value="">شهر</option>
-        {cityOptions.map(c=> <option key={c} value={c}>{c}</option>)}
-      </select>
-      <select value={sport} onChange={e=>setSport(e.target.value)} className="p-2 border rounded">
-        <option value="">نوع ورزش</option>
-        <option>فوتسال</option>
-        <option>فوتبال</option>
-        <option>بسکتبال</option>
-        <option>والیبال</option>
-        <option>پینت بال</option>
-      </select>
-      <div className="p-0">
+    <form onSubmit={onSearch} className="bg-white rounded-2xl p-6 shadow-2xl flex flex-col lg:flex-row gap-4 animate-slide-up border border-slate-200">
+      <div className="flex-1 relative">
+        <MapPinIcon className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" />
+        <select value={province} onChange={e=>setProvince(e.target.value)} className="w-full pl-10 pr-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-modernBlue focus:border-transparent transition-all duration-200 bg-slate-50 hover:bg-white">
+          <option value="">استان</option>
+          {locations.map((l)=> <option key={l.province} value={l.province}>{l.province}</option>)}
+        </select>
+      </div>
+      <div className="flex-1 relative">
+        <MapPinIcon className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" />
+        <select value={city} onChange={e=>setCity(e.target.value)} className="w-full pl-10 pr-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-modernBlue focus:border-transparent transition-all duration-200 bg-slate-50 hover:bg-white disabled:opacity-50" disabled={!province}>
+          <option value="">شهر</option>
+          {cityOptions.map(c=> <option key={c} value={c}>{c}</option>)}
+        </select>
+      </div>
+      <div className="flex-1 relative">
+        <select value={sport} onChange={e=>setSport(e.target.value)} className="w-full pl-4 pr-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-modernBlue focus:border-transparent transition-all duration-200 bg-slate-50 hover:bg-white">
+          <option value="">نوع ورزش</option>
+          <option>فوتسال</option>
+          <option>فوتبال</option>
+          <option>بسکتبال</option>
+          <option>والیبال</option>
+          <option>پینت بال</option>
+        </select>
+      </div>
+      <div className="flex-1 relative">
+        <CalendarDaysIcon className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 z-10" />
         <DatePicker
           calendar={persian}
           locale={persian_fa}
           value={date}
           onChange={setDate}
-          className="p-2 border rounded"
+          className="w-full"
           format="YYYY/MM/DD"
           calendarPosition="bottom-right"
+          inputClass="w-full pl-10 pr-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-modernBlue focus:border-transparent transition-all duration-200 bg-slate-50 hover:bg-white"
         />
       </div>
-      <button className="bg-sportBlue text-white px-4 py-2 rounded">جستجو</button>
+      <button className="bg-gradient-to-r from-modernBlue to-sportBlue text-white px-8 py-3 rounded-xl hover:from-sportBlue hover:to-modernBlue transition-all duration-200 font-medium shadow-lg hover:shadow-xl flex items-center justify-center gap-2 min-w-[120px]">
+        <MagnifyingGlassIcon className="w-5 h-5" />
+        جستجو
+      </button>
     </form>
   )
 }

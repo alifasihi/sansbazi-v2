@@ -76,32 +76,49 @@ export default function BookingForm({price, selectedDate, selectedTime, futureDa
   }
 
   return (
-    <form onSubmit={onSubmit} className="bg-white rounded p-4 shadow">
-      <div className="grid grid-cols-1 gap-3">
-        <div>
-          <div className="text-sm text-slate-500">تاریخ انتخاب‌شده</div>
-          <div className="mt-1 font-medium">{date ? formatDateDisplay(date) : '---'}</div>
+    <form onSubmit={onSubmit} className="bg-white rounded-2xl p-6 shadow-2xl animate-slide-up border border-slate-200">
+      <h3 className="text-2xl font-bold text-slate-800 mb-6 text-center">فرم رزرو</h3>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="md:col-span-2">
+          <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl p-4 border border-blue-200">
+            <div className="text-sm text-slate-600 mb-2">تاریخ انتخاب‌شده</div>
+            <div className="text-lg font-semibold text-slate-800">{date ? formatDateDisplay(date) : '---'}</div>
+          </div>
         </div>
-        <div>
-          <div className="text-sm text-slate-500">ساعت انتخاب‌شده</div>
-          <div className="mt-1 font-medium">{time || '---'}</div>
+        <div className="md:col-span-2">
+          <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-xl p-4 border border-green-200">
+            <div className="text-sm text-slate-600 mb-2">ساعت انتخاب‌شده</div>
+            <div className="text-lg font-semibold text-slate-800">{time || '---'}</div>
+          </div>
         </div>
         {futureDates && futureDates.length>0 && (
-          <div className="text-sm text-slate-500">رزرو اضافی برای {futureDates.length} تاریخ انتخاب شده</div>
+          <div className="md:col-span-2 bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-xl p-4 border border-yellow-200">
+            <div className="text-sm text-slate-600">رزرو اضافی برای {futureDates.length} تاریخ انتخاب شده</div>
+          </div>
         )}
-        <input value={name} onChange={e=>setName(e.target.value)} placeholder="نام" className="p-2 border rounded" />
-        <input value={phone} onChange={e=>setPhone(e.target.value)} placeholder="شماره تماس" className="p-2 border rounded" />
-        <div className="flex items-center justify-between">
-          <div className="text-lg font-semibold">قیمت نهایی</div>
-          <div className={`text-lg font-bold text-green-700`}>{formatPrice(totalPrice || price)}</div>
+        <div>
+          <input value={name} onChange={e=>setName(e.target.value)} placeholder="نام" className="w-full p-4 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-modernBlue focus:border-transparent transition-all duration-200 bg-slate-50 hover:bg-white" />
         </div>
-        {ballRental && selectedCount>0 && (
-          <div className="text-sm text-slate-600 mt-1">اجاره توپ: {formatPrice(ballFee)} × {selectedCount} = <span className="font-medium text-green-700">{formatPrice(extraTotal)}</span></div>
-        )}
-        {selectedCount > 1 && (
-          <div className="text-sm text-slate-500">مجموع {selectedCount} سانس • هر سانس: <span className="text-green-700 font-medium">{formatPrice(price)}</span></div>
-        )}
-        <button type="submit" disabled={!date || !time} className={`mt-2 w-full ${(!date || !time) ? 'bg-slate-300 cursor-not-allowed' : 'bg-sportBlue'} text-white py-2 rounded`}>ثبت رزرو</button>
+        <div>
+          <input value={phone} onChange={e=>setPhone(e.target.value)} placeholder="شماره تماس" className="w-full p-4 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-modernBlue focus:border-transparent transition-all duration-200 bg-slate-50 hover:bg-white" />
+        </div>
+        <div className="md:col-span-2 bg-gradient-to-r from-slate-50 to-slate-100 rounded-xl p-6 border border-slate-300">
+          <div className="flex items-center justify-between mb-4">
+            <div className="text-xl font-bold text-slate-800">قیمت نهایی</div>
+            <div className="text-2xl font-bold text-modernGreen">{formatPrice(totalPrice || price)}</div>
+          </div>
+          {ballRental && selectedCount>0 && (
+            <div className="text-sm text-slate-600 mb-2">اجاره توپ: {formatPrice(ballFee)} × {selectedCount} = <span className="font-semibold text-modernGreen">{formatPrice(extraTotal)}</span></div>
+          )}
+          {selectedCount > 1 && (
+            <div className="text-sm text-slate-500">مجموع {selectedCount} سانس • هر سانس: <span className="text-modernGreen font-semibold">{formatPrice(price)}</span></div>
+          )}
+        </div>
+        <div className="md:col-span-2">
+          <button type="submit" disabled={!date || !time} className={`w-full py-4 rounded-xl font-bold text-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 ${(!date || !time) ? 'bg-slate-300 cursor-not-allowed text-slate-500' : 'bg-gradient-to-r from-modernBlue to-sportBlue text-white hover:from-sportBlue hover:to-modernBlue'}`}>
+            ثبت رزرو
+          </button>
+        </div>
       </div>
     </form>
   )

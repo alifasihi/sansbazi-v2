@@ -2,6 +2,7 @@
   {
     "id": "arena-1",
     "name": "سالن ورزشی آزادی کرمان",
+    "logo": "/images/logos/arena1-logo.svg",
     "city": "کرمان",
     "sportType": "فوتسال",
     "address": "بلوار شهید بهشتی، پلاک 12",
@@ -20,6 +21,7 @@
   {
     "id": "arena-2",
     "name": "دنا اسپورت کرمان",
+    "logo": "/images/logos/arena2-logo.svg",
     "city": "کرمان",
     "sportType": "بسکتبال",
     "address": "خیابان امام خمینی، نبش کوچهٔ ۱۲",
@@ -38,6 +40,7 @@
   {
     "id": "arena-3",
     "name": "پارس جم کرمان",
+    "logo": "/images/logos/arena3-logo.svg",
     "city": "کرمان",
     "sportType": "والیبال",
     "address": "خیابان فرهنگ",
@@ -55,6 +58,7 @@
   {
     "id": "arena-4",
     "name": "پینت بال کرمان",
+    "logo": "/images/logos/arena4-logo.svg",
     "city": "کرمان",
     "sportType": "پینت بال",
     "address": "پارک ملت، روبروی زمین چمن",
@@ -75,6 +79,7 @@
   {
     "id": "arena-5",
     "name": "سالن جوانان کرمان",
+    "logo": "/images/logos/arena5-logo.svg",
     "city": "کرمان",
     "sportType": "فوتسال",
     "address": "خیابان مدرس",
@@ -93,6 +98,7 @@
   {
     "id": "arena-6",
     "name": "مجتمع قسمت چمن",
+    "logo": "/images/logos/arena6-logo.svg",
     "city": "کرمان",
     "sportType": "فوتبال (چمن)",
     "address": "بلوار چمران، روبروی مجموعه ورزشی مرکزی",
