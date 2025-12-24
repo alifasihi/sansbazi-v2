@@ -1,0 +1,113 @@
+[
+  {
+    "id": "arena-1",
+    "name": "سالن ورزشی آزادی کرمان",
+    "city": "کرمان",
+    "sportType": "فوتسال",
+    "address": "بلوار شهید بهشتی، پلاک 12",
+    "phone": "034-12345678",
+    "location": {"lat": 30.2832, "lng": 57.0745},
+    "price": 600000,
+    "rating": 4.6,
+    "images": ["/images/arena1-1.svg","/images/arena1-2.svg","/images/arena1-3.svg"],
+    "amenities": ["رختکن","پارکینگ","نور خوب","کف‌پوش استاندارد"],
+    "slots": [
+      {"time":"09:00 - 10:30","status":"free"},
+      {"time":"10:30 - 12:00","status":"booked"},
+      {"time":"12:00 - 13:30","status":"free"}
+    ]
+  },
+  {
+    "id": "arena-2",
+    "name": "دنا اسپورت کرمان",
+    "city": "کرمان",
+    "sportType": "بسکتبال",
+    "address": "خیابان امام خمینی، نبش کوچهٔ ۱۲",
+    "phone": "034-22334455",
+    "location": {"lat": 30.2915, "lng": 57.0832},
+    "openingHours": "08:00 - 22:00",
+    "price": 650000,
+    "rating": 4.2,
+    "images": ["/images/arena2-1.svg","/images/arena2-2.svg"],
+    "amenities": ["پارکینگ","دوش","زمین چوبی"],
+    "slots": [
+      {"time":"17:00 - 18:30","status":"free"},
+      {"time":"18:30 - 20:00","status":"free"}
+    ]
+  },
+  {
+    "id": "arena-3",
+    "name": "پارس جم کرمان",
+    "city": "کرمان",
+    "sportType": "والیبال",
+    "address": "خیابان فرهنگ",
+    "phone": "034-33445566",
+    "location": {"lat": 30.2750, "lng": 57.0665},
+    "price": 700000,
+    "rating": 4.8,
+    "images": ["/images/arena3-1.svg","/images/arena3-2.svg","/images/arena3-3.svg"],
+    "amenities": ["نور LED","رختکن","صندلی برای تماشاگر"],
+    "slots": [
+      {"time":"20:00 - 21:30","status":"booked"},
+      {"time":"21:30 - 23:00","status":"free"}
+    ]
+  },
+  {
+    "id": "arena-4",
+    "name": "پینت بال کرمان",
+    "city": "کرمان",
+    "sportType": "پینت بال",
+    "address": "پارک ملت، روبروی زمین چمن",
+    "phone": "034-44556677",
+    "location": {"lat": 30.3000, "lng": 57.0900},
+    "price": 650000,
+    "rating": 4.4,
+    "images": ["/images/arena4-1.svg","/images/arena4-2.svg","/images/arena4-3.svg"],
+    "amenities": ["محوطهٔ بازی روباز","کیت محافظ و ماسک","مربی/داور","پارکینگ"],
+    "openingHours": "10:00 - 21:00",
+    "slots": [
+      {"time":"10:00 - 11:30","status":"free"},
+      {"time":"11:30 - 13:00","status":"free"},
+      {"time":"17:00 - 18:30","status":"free"},
+      {"time":"18:30 - 20:00","status":"booked"}
+    ]
+  },
+  {
+    "id": "arena-5",
+    "name": "سالن جوانان کرمان",
+    "city": "کرمان",
+    "sportType": "فوتسال",
+    "address": "خیابان مدرس",
+    "phone": "034-55667788",
+    "location": {"lat": 30.2650, "lng": 57.0580},
+    "price": 620000,
+    "rating": 4.1,
+    "images": ["/images/arena5-1.svg","/images/arena5-2.svg","/images/arena5-3.svg"],
+    "amenities": ["پارکینگ","نور مناسب","کف‌پوش چندمنظوره"],
+    "slots": [
+      {"time":"13:00 - 14:30","status":"free"},
+      {"time":"14:30 - 16:00","status":"free"}
+    ]
+  }
+  ,
+  {
+    "id": "arena-6",
+    "name": "مجتمع قسمت چمن",
+    "city": "کرمان",
+    "sportType": "فوتبال (چمن)",
+    "address": "بلوار چمران، روبروی مجموعه ورزشی مرکزی",
+    "phone": "034-66778899",
+    "location": {"lat": 30.2900, "lng": 57.1050},
+    "price": 700000,
+    "rating": 4.5,
+    "images": ["/images/arena6-1.svg","/images/arena6-2.svg","/images/arena6-3.svg"],
+    "amenities": ["زمین چمن طبیعی","نور شبانه","دو رختکن","پارکینگ بزرگ"],
+    "openingHours": "08:00 - 23:00",
+    "slots": [
+      {"time":"09:00 - 10:30","status":"free"},
+      {"time":"10:30 - 12:00","status":"free"},
+      {"time":"16:00 - 17:30","status":"free"},
+      {"time":"18:00 - 19:30","status":"booked"}
+    ]
+  }
+]

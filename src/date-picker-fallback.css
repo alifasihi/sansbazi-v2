@@ -1,0 +1,14 @@
+/* Minimal fallback styles for the date picker when package CSS is not installed */
+.rmdp-container, .rmdp-calendar, .rmdp, .rmdp-input {
+  font-family: inherit;
+}
+.rmdp-input {
+  padding: .5rem .75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: .375rem;
+  background: white;
+}
+.rmdp-calendar {
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+  border-radius: .5rem;
+}

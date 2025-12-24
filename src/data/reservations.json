@@ -1,0 +1,5 @@
+[
+  {"id":"r1","arenaId":"arena-1","date":"2026-03-10","time":"09:00 - 10:30","status":"confirmed"},
+  {"id":"r2","arenaId":"arena-2","date":"2026-03-12","time":"18:30 - 20:00","status":"confirmed"},
+  {"id":"r3","arenaId":"arena-3","date":"2026-03-18","time":"20:00 - 21:30","status":"confirmed"}
+]
