@@ -64,7 +64,7 @@ export default function SearchBar(){
           className="w-full"
           format="YYYY/MM/DD"
           calendarPosition="bottom-right"
-          inputClass="w-full pl-10 pr-4 py-3 border border-glass rounded-xl focus:outline-none focus:ring-2 focus:ring-neonBlue focus:border-transparent transition-all duration-200 bg-glass backdrop-blur-sm hover:bg-glassDark"
+          inputClass="w-full pl-10 pr-4 py-3 border border-glass rounded-xl focus:outline-none focus:ring-2 focus:ring-neonBlue focus:border-transparent transition-all duration-200 bg-glass backdrop-blur-sm hover:bg-glassDark z-10"
         />
       </div>
       <button className="bg-gradient-to-r from-modernBlue to-neonBlue text-white px-8 py-3 rounded-xl hover:from-neonBlue hover:to-modernBlue transition-all duration-200 font-medium shadow-lg hover:shadow-xl flex items-center justify-center gap-2 min-w-[120px] animate-glow">
