@@ -19,37 +19,87 @@ export default function Profile(){
   })
 
   if(!user) return (
-    <div className="space-y-4">
-      <h2 className="text-xl font-semibold">پروفایل</h2>
-      <div className="bg-white p-4 rounded shadow">لطفاً ابتدا <a className="text-sportGreen" href="/login">وارد</a> شوید یا <a className="text-sportGreen" href="/signup">ثبت‌نام</a> کنید.</div>
+    <div className="space-y-8 animate-fade-in">
+      <div className="bg-glass backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-glass animate-slide-up">
+        <h2 className="text-3xl font-bold bg-gradient-to-r from-neonPurple to-modernGreen bg-clip-text text-transparent mb-4">پروفایل</h2>
+        <div className="bg-glassDark rounded-2xl p-6 border border-glass">
+          <p className="text-slate-600 text-center">لطفاً ابتدا <a className="text-neonBlue hover:text-neonPurple transition-colors duration-200 font-medium" href="/login">وارد</a> شوید یا <a className="text-neonGreen hover:text-modernGreen transition-colors duration-200 font-medium" href="/signup">ثبت‌نام</a> کنید.</p>
+        </div>
+      </div>
     </div>
   )
 
   return (
-    <div className="space-y-4">
-      <h2 className="text-xl font-semibold">پروفایل</h2>
-      <div className="bg-white p-4 rounded shadow">
-        <h3 className="font-semibold">اطلاعات کاربر</h3>
-        <p className="text-sm text-slate-600 mt-2">نام: {user.name}</p>
-        <p className="text-sm text-slate-600">تلفن: {user.phone}</p>
+    <div className="space-y-8 animate-fade-in">
+      <div className="bg-glass backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-glass animate-slide-up">
+        <h2 className="text-3xl font-bold bg-gradient-to-r from-modernBlue to-neonBlue bg-clip-text text-transparent mb-6">پروفایل</h2>
+        <div className="bg-glassDark rounded-2xl p-6 border border-glass">
+          <h3 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+            <span className="inline-block w-3 h-3 bg-neonBlue rounded-full animate-pulse-slow"></span>
+            اطلاعات کاربر
+          </h3>
+          <div className="space-y-3">
+            <div className="flex items-center gap-3">
+              <span className="inline-block w-2 h-2 bg-neonGreen rounded-full animate-pulse-slow"></span>
+              <span className="text-slate-600">نام:</span>
+              <span className="font-semibold text-slate-800">{user.name}</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="inline-block w-2 h-2 bg-neonPurple rounded-full animate-pulse-slow"></span>
+              <span className="text-slate-600">تلفن:</span>
+              <span className="font-semibold text-slate-800">{user.phone}</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className="bg-white p-4 rounded shadow">
-        <h3 className="font-semibold">رزروهای شما</h3>
-        <ul className="mt-3 space-y-2">
-          {reservations.length===0 && <div className="text-sm text-slate-500">تا کنون رزروی ثبت نشده است.</div>}
-          <div className="text-xs text-slate-400 mb-2">مرتب‌شده بر اساس تاریخ و ساعت (صعودی)</div>
+      <div className="bg-glass backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-glass animate-slide-up" style={{animationDelay: '0.2s'}}>
+        <h3 className="text-2xl font-bold bg-gradient-to-r from-neonPurple to-modernGreen bg-clip-text text-transparent mb-6 flex items-center gap-2">
+          <span className="inline-block w-3 h-3 bg-neonGreen rounded-full animate-pulse-slow"></span>
+          رزروهای شما
+        </h3>
+        <div className="space-y-4">
+          {reservations.length===0 && (
+            <div className="bg-glassDark rounded-2xl p-6 border border-glass text-center">
+              <p className="text-slate-500">تا کنون رزروی ثبت نشده است.</p>
+            </div>
+          )}
+          <div className="text-sm text-slate-500 bg-glassDark rounded-xl p-4 border border-glass">
+            <span className="inline-block w-2 h-2 bg-modernBlue rounded-full animate-pulse-slow mr-2"></span>
+            مرتب‌شده بر اساس تاریخ و ساعت (صعودی)
+          </div>
           {sortedReservations.map(r=> (
-            <li key={r.id} className="p-3 border rounded flex items-center justify-between">
-              <div>
-                <div className="font-semibold">{(data.find(a=>a.id===r.arenaId) || {}).name}</div>
-                <div className="text-sm text-slate-600">{r.date} • {r.time}</div>
-                {r.extraBall && <div className="text-xs text-slate-500 mt-1">اجاره توپ: {r.extraFee} تومان</div>}
+            <div key={r.id} className="bg-glassDark rounded-2xl p-6 border border-glass hover:border-neonBlue transition-all duration-200 hover:shadow-lg">
+              <div className="flex items-center justify-between">
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-2">
+                    <img src={(data.find(a=>a.id===r.arenaId) || {}).logo} alt="arena logo" className="w-10 h-10 rounded-xl object-cover shadow-md animate-float" />
+                    <div className="font-bold text-lg text-slate-800">{(data.find(a=>a.id===r.arenaId) || {}).name}</div>
+                  </div>
+                  <div className="flex items-center gap-4 text-sm text-slate-600">
+                    <span className="flex items-center gap-2">
+                      <span className="inline-block w-2 h-2 bg-neonBlue rounded-full animate-pulse-slow"></span>
+                      {r.date}
+                    </span>
+                    <span className="flex items-center gap-2">
+                      <span className="inline-block w-2 h-2 bg-neonGreen rounded-full animate-pulse-slow"></span>
+                      {r.time}
+                    </span>
+                  </div>
+                  {r.extraBall && (
+                    <div className="flex items-center gap-2 text-sm text-slate-500 mt-2">
+                      <span className="inline-block w-2 h-2 bg-neonPurple rounded-full animate-pulse-slow"></span>
+                      اجاره توپ: {r.extraFee.toLocaleString('en-US')} تومان
+                    </div>
+                  )}
+                </div>
+                <div className={`px-4 py-2 rounded-xl text-sm font-medium ${r.status==='confirmed' ? 'bg-gradient-to-r from-neonGreen to-modernGreen text-white shadow-lg' : 'bg-gradient-to-r from-red-400 to-red-500 text-white shadow-lg'}`}>
+                  {r.status === 'confirmed' ? 'تأیید شده' : 'لغو شده'}
+                </div>
               </div>
-              <div className={`px-3 py-1 rounded text-sm ${r.status==='confirmed' ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`}>{r.status}</div>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </div>
   )

@@ -23,17 +23,56 @@ export default function Login(){
   }
 
   return (
-    <div className="max-w-md mx-auto bg-white p-6 rounded shadow">
-      <h2 className="text-xl font-semibold mb-3">ورود</h2>
-      <form onSubmit={onSubmit} className="space-y-3">
-        <input value={phone} onChange={e=>setPhone(e.target.value)} placeholder="شماره تماس" className="p-2 border rounded w-full" />
-        {error && <div className="text-sm text-red-600">{error}</div>}
-        <div className="flex gap-2">
-          <button type="submit" className="flex-1 bg-sportGreen text-white py-2 rounded">ورود</button>
-          <Link to="/signup" className="flex-1 text-center border rounded py-2">ثبت نام</Link>
+    <div className="min-h-screen flex items-center justify-center p-4 animate-fade-in">
+      <div className="w-full max-w-md">
+        <div className="bg-glass backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-glass animate-bounce-in">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-modernBlue to-neonBlue bg-clip-text text-transparent mb-2">ورود به حساب</h2>
+            <p className="text-slate-600">برای ادامه لطفاً شماره تماس خود را وارد کنید</p>
+          </div>
+
+          <form onSubmit={onSubmit} className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">شماره تماس</label>
+              <input
+                value={phone}
+                onChange={e=>setPhone(e.target.value)}
+                placeholder="۰۹۱۲۳۴۵۶۷۸۹"
+                className="w-full p-4 border border-glass rounded-2xl focus:outline-none focus:ring-2 focus:ring-neonBlue focus:border-transparent transition-all duration-200 bg-glass backdrop-blur-sm hover:bg-glassDark text-slate-800 placeholder-slate-500"
+                dir="ltr"
+              />
+            </div>
+
+            {error && (
+              <div className="bg-red-50 border border-red-200 rounded-2xl p-4 text-sm text-red-700 animate-shake">
+                <span className="inline-block w-2 h-2 bg-red-500 rounded-full mr-2 animate-pulse-slow"></span>
+                {error}
+              </div>
+            )}
+
+            <div className="space-y-3">
+              <button
+                type="submit"
+                className="w-full bg-gradient-to-r from-modernGreen to-neonGreen text-white py-4 rounded-2xl font-bold text-lg transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105 animate-glow"
+              >
+                ورود
+              </button>
+
+              <Link
+                to="/signup"
+                className="block w-full text-center bg-glassDark border border-glass text-slate-700 py-4 rounded-2xl font-medium transition-all duration-200 hover:bg-glass hover:border-neonBlue hover:text-neonBlue"
+              >
+                ثبت نام حساب جدید
+              </Link>
+            </div>
+          </form>
+
+          <div className="text-xs text-slate-500 mt-6 text-center bg-glassDark rounded-xl p-4 border border-glass">
+            <span className="inline-block w-2 h-2 bg-modernBlue rounded-full mr-2 animate-pulse-slow"></span>
+            برای ورود کافی است شمارهٔ ثبت شده را وارد کنید.
+          </div>
         </div>
-      </form>
-      <div className="text-xs text-slate-500 mt-3">برای ورود کافی است شمارهٔ ثبت شده را وارد کنید.</div>
+      </div>
     </div>
   )
 }

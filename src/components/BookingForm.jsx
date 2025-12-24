@@ -76,46 +76,64 @@ export default function BookingForm({price, selectedDate, selectedTime, futureDa
   }
 
   return (
-    <form onSubmit={onSubmit} className="bg-white rounded-2xl p-6 shadow-2xl animate-slide-up border border-slate-200">
-      <h3 className="text-2xl font-bold text-slate-800 mb-6 text-center">فرم رزرو</h3>
+    <form onSubmit={onSubmit} className="bg-glass backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-glass animate-slide-up">
+      <h3 className="text-3xl font-bold bg-gradient-to-r from-neonPurple to-modernGreen bg-clip-text text-transparent mb-8 text-center">فرم رزرو</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="md:col-span-2">
-          <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl p-4 border border-blue-200">
-            <div className="text-sm text-slate-600 mb-2">تاریخ انتخاب‌شده</div>
-            <div className="text-lg font-semibold text-slate-800">{date ? formatDateDisplay(date) : '---'}</div>
+          <div className="bg-glassDark rounded-2xl p-5 border border-glass">
+            <div className="text-sm text-slate-500 mb-2 flex items-center gap-2">
+              <span className="inline-block w-2 h-2 bg-neonBlue rounded-full animate-pulse-slow"></span>
+              تاریخ انتخاب‌شده
+            </div>
+            <div className="text-xl font-bold text-slate-800">{date ? formatDateDisplay(date) : '---'}</div>
           </div>
         </div>
         <div className="md:col-span-2">
-          <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-xl p-4 border border-green-200">
-            <div className="text-sm text-slate-600 mb-2">ساعت انتخاب‌شده</div>
-            <div className="text-lg font-semibold text-slate-800">{time || '---'}</div>
+          <div className="bg-glassDark rounded-2xl p-5 border border-glass">
+            <div className="text-sm text-slate-500 mb-2 flex items-center gap-2">
+              <span className="inline-block w-2 h-2 bg-neonGreen rounded-full animate-pulse-slow"></span>
+              ساعت انتخاب‌شده
+            </div>
+            <div className="text-xl font-bold text-slate-800">{time || '---'}</div>
           </div>
         </div>
         {futureDates && futureDates.length>0 && (
-          <div className="md:col-span-2 bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-xl p-4 border border-yellow-200">
-            <div className="text-sm text-slate-600">رزرو اضافی برای {futureDates.length} تاریخ انتخاب شده</div>
+          <div className="md:col-span-2 bg-glassDark rounded-2xl p-5 border border-glass">
+            <div className="text-sm text-slate-500 flex items-center gap-2">
+              <span className="inline-block w-2 h-2 bg-neonPurple rounded-full animate-pulse-slow"></span>
+              رزرو اضافی برای {futureDates.length} تاریخ انتخاب شده
+            </div>
           </div>
         )}
         <div>
-          <input value={name} onChange={e=>setName(e.target.value)} placeholder="نام" className="w-full p-4 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-modernBlue focus:border-transparent transition-all duration-200 bg-slate-50 hover:bg-white" />
+          <input value={name} onChange={e=>setName(e.target.value)} placeholder="نام" className="w-full p-4 border border-glass rounded-2xl focus:outline-none focus:ring-2 focus:ring-neonBlue focus:border-transparent transition-all duration-200 bg-glass backdrop-blur-sm hover:bg-glassDark text-slate-800 placeholder-slate-500" />
         </div>
         <div>
-          <input value={phone} onChange={e=>setPhone(e.target.value)} placeholder="شماره تماس" className="w-full p-4 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-modernBlue focus:border-transparent transition-all duration-200 bg-slate-50 hover:bg-white" />
+          <input value={phone} onChange={e=>setPhone(e.target.value)} placeholder="شماره تماس" className="w-full p-4 border border-glass rounded-2xl focus:outline-none focus:ring-2 focus:ring-neonBlue focus:border-transparent transition-all duration-200 bg-glass backdrop-blur-sm hover:bg-glassDark text-slate-800 placeholder-slate-500" />
         </div>
-        <div className="md:col-span-2 bg-gradient-to-r from-slate-50 to-slate-100 rounded-xl p-6 border border-slate-300">
+        <div className="md:col-span-2 bg-glassDark rounded-2xl p-6 border border-glass">
           <div className="flex items-center justify-between mb-4">
-            <div className="text-xl font-bold text-slate-800">قیمت نهایی</div>
-            <div className="text-2xl font-bold text-modernGreen">{formatPrice(totalPrice || price)}</div>
+            <div className="text-xl font-bold text-slate-800 flex items-center gap-2">
+              <span className="inline-block w-3 h-3 bg-neonGreen rounded-full animate-pulse-slow"></span>
+              قیمت نهایی
+            </div>
+            <div className="text-3xl font-bold bg-gradient-to-r from-neonGreen to-modernGreen bg-clip-text text-transparent">{formatPrice(totalPrice || price)}</div>
           </div>
           {ballRental && selectedCount>0 && (
-            <div className="text-sm text-slate-600 mb-2">اجاره توپ: {formatPrice(ballFee)} × {selectedCount} = <span className="font-semibold text-modernGreen">{formatPrice(extraTotal)}</span></div>
+            <div className="text-sm text-slate-600 mb-2 flex items-center gap-2">
+              <span className="inline-block w-2 h-2 bg-neonPurple rounded-full animate-pulse-slow"></span>
+              اجاره توپ: {formatPrice(ballFee)} × {selectedCount} = <span className="font-semibold text-neonGreen">{formatPrice(extraTotal)}</span>
+            </div>
           )}
           {selectedCount > 1 && (
-            <div className="text-sm text-slate-500">مجموع {selectedCount} سانس • هر سانس: <span className="text-modernGreen font-semibold">{formatPrice(price)}</span></div>
+            <div className="text-sm text-slate-500 flex items-center gap-2">
+              <span className="inline-block w-2 h-2 bg-modernBlue rounded-full animate-pulse-slow"></span>
+              مجموع {selectedCount} سانس • هر سانس: <span className="text-neonBlue font-semibold">{formatPrice(price)}</span>
+            </div>
           )}
         </div>
         <div className="md:col-span-2">
-          <button type="submit" disabled={!date || !time} className={`w-full py-4 rounded-xl font-bold text-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 ${(!date || !time) ? 'bg-slate-300 cursor-not-allowed text-slate-500' : 'bg-gradient-to-r from-modernBlue to-sportBlue text-white hover:from-sportBlue hover:to-modernBlue'}`}>
+          <button type="submit" disabled={!date || !time} className={`w-full py-5 rounded-2xl font-bold text-xl transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105 ${(!date || !time) ? 'bg-glassDark cursor-not-allowed text-slate-500 border border-glass' : 'bg-gradient-to-r from-modernGreen to-neonGreen text-white hover:from-neonGreen hover:to-modernGreen animate-glow'}`}>
             ثبت رزرو
           </button>
         </div>

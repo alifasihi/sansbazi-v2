@@ -23,15 +23,57 @@ export default function Signup(){
   }
 
   return (
-    <div className="max-w-md mx-auto bg-white p-6 rounded shadow">
-      <h2 className="text-xl font-semibold mb-3">ثبت نام</h2>
-      <form onSubmit={onSubmit} className="space-y-3">
-        <input value={name} onChange={e=>setName(e.target.value)} placeholder="نام" className="p-2 border rounded w-full" />
-        <input value={phone} onChange={e=>setPhone(e.target.value)} placeholder="شماره تماس" className="p-2 border rounded w-full" />
-        {error && <div className="text-sm text-red-600">{error}</div>}
-        <button type="submit" className="w-full bg-sportGreen text-white py-2 rounded">ثبت نام و ورود</button>
-      </form>
-      <div className="text-xs text-slate-500 mt-3">با ثبت نام، شما به‌صورت خودکار وارد خواهید شد.</div>
+    <div className="min-h-screen flex items-center justify-center p-4 animate-fade-in">
+      <div className="w-full max-w-md">
+        <div className="bg-glass backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-glass animate-bounce-in">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-neonPurple to-modernGreen bg-clip-text text-transparent mb-2">ثبت نام حساب جدید</h2>
+            <p className="text-slate-600">برای شروع رزرو، اطلاعات خود را وارد کنید</p>
+          </div>
+
+          <form onSubmit={onSubmit} className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">نام و نام خانوادگی</label>
+              <input
+                value={name}
+                onChange={e=>setName(e.target.value)}
+                placeholder="مثال: علی محمدی"
+                className="w-full p-4 border border-glass rounded-2xl focus:outline-none focus:ring-2 focus:ring-neonBlue focus:border-transparent transition-all duration-200 bg-glass backdrop-blur-sm hover:bg-glassDark text-slate-800 placeholder-slate-500"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">شماره تماس</label>
+              <input
+                value={phone}
+                onChange={e=>setPhone(e.target.value)}
+                placeholder="۰۹۱۲۳۴۵۶۷۸۹"
+                className="w-full p-4 border border-glass rounded-2xl focus:outline-none focus:ring-2 focus:ring-neonBlue focus:border-transparent transition-all duration-200 bg-glass backdrop-blur-sm hover:bg-glassDark text-slate-800 placeholder-slate-500"
+                dir="ltr"
+              />
+            </div>
+
+            {error && (
+              <div className="bg-red-50 border border-red-200 rounded-2xl p-4 text-sm text-red-700 animate-shake">
+                <span className="inline-block w-2 h-2 bg-red-500 rounded-full mr-2 animate-pulse-slow"></span>
+                {error}
+              </div>
+            )}
+
+            <button
+              type="submit"
+              className="w-full bg-gradient-to-r from-modernBlue to-neonBlue text-white py-4 rounded-2xl font-bold text-lg transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105 animate-glow"
+            >
+              ثبت نام و ورود
+            </button>
+          </form>
+
+          <div className="text-xs text-slate-500 mt-6 text-center bg-glassDark rounded-xl p-4 border border-glass">
+            <span className="inline-block w-2 h-2 bg-modernGreen rounded-full mr-2 animate-pulse-slow"></span>
+            با ثبت نام، شما به‌صورت خودکار وارد خواهید شد.
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

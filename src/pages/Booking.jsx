@@ -38,7 +38,7 @@ export default function Booking(){
   },[selectedDate, arena, refreshKey])
 
   const displayedSlots = useMemo(()=> markBookedSlots(slots, bookedForSelectedDate), [slots, bookedForSelectedDate])
-  
+
   // Future weekly suggestions for the selected time (next N weeks)
 
   function toDate(d){
@@ -77,182 +77,169 @@ export default function Booking(){
   },[selectedDate, selectedTime, refreshKey, arena])
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <div className="lg:col-span-2 space-y-4">
-        <h2 className="text-2xl font-bold">رزرو {arena.name}</h2>
-        <p className="text-sm text-slate-600">{arena.address}</p>
-
-        <div className="bg-white p-4 rounded shadow">
-          <div className="flex items-center justify-between">
-            <h4 className="font-semibold">انتخاب تاریخ (از امروز تا یک هفته)</h4>
-            <div>
-              <button onClick={()=>setShowCustomDate(s=>!s)} className="text-sm text-sportBlue hover:underline">تاریخ دلخواه (از ۷ روز آینده)</button>
-            </div>
-          </div>
-
-          {showCustomDate && (
-            <div className="mt-3">
-              <DatePicker
-                calendar={persian}
-                locale={persian_fa}
-                value={selectedDate}
-                onChange={(d)=>{
-                  // d may be DateObject from picker
-                  setSelectedDate(d)
-                  setSelectedTime('')
-                }}
-                format="YYYY/MM/DD"
-                minDate={new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()+7)}
-                maxDate={new Date(2026,2,19)}
-                className="p-2 border rounded"
-              />
-              <div className="text-xs text-slate-400 mt-1">حداقل تاریخ: ۷ روز پس از امروز — حداکثر: 29/12/1404</div>
-            </div>
-          )}
-
-          <div className="mt-4">
-            <WeekDaysBar selectedDate={selectedDate} onSelect={(d)=>{ setSelectedDate(d); setSelectedTime('') }} />
-            <div className="mt-4">
-              <h4 className="font-semibold mb-2">سانس‌ها برای {selectedDate ? (selectedDate.format ? selectedDate.format('YYYY/MM/DD') : new Intl.DateTimeFormat('fa-IR-u-ca-persian',{year:'numeric',month:'2-digit',day:'2-digit'}).format(selectedDate)) : '---'}</h4>
-              <DailySlots slots={displayedSlots} onSelect={(t)=>{
-                // ensure we have a base date; if none, default to today
-                let base = selectedDate
-                if(!base){
-                  base = new Date()
-                  setSelectedDate(base)
-                }
-                setSelectedTime(t)
-                const opts = computeFutureOptions(base, t)
-                setModalFutureOptions(opts)
-                setModalBall(false)
-                setShowModal(true)
-              }} selectedTime={selectedTime} reservations={(() => {
-                const iso = (selectedDate.format ? selectedDate.toDate().toISOString().slice(0,10) : selectedDate.toISOString().slice(0,10))
-                const allRes = getAllReservations()
-                return allRes.filter(r => r.date === iso && r.arenaId === arena.id)
-              })()} />
-              {selectedTime && (
-                <div className="mt-4 bg-slate-50 p-3 rounded">
-                  <h4 className="font-semibold mb-2">پیشنهاد برای هفته‌های بعد (همان روز و ساعت)</h4>
-                  <div className="mb-2">
-                    <button onClick={()=>{
-                      // open modal seeded with current future options and ball state
-                      setModalFutureOptions(futureOptions.map(f => ({ ...f })))
-                      setModalBall(ballRental)
-                      setShowModal(true)
-                    }} className="text-sm text-sportBlue hover:underline">پیکربندی پیشرفته (انتخاب توپ و هفته‌ها)</button>
-                  </div>
-                  <div className="grid gap-2">
-                    {futureOptions.length===0 && <div className="text-sm text-slate-500">هیچ پیشنهادی موجود نیست.</div>}
-                    {futureOptions.map((opt, idx)=> (
-                      <label key={idx} className={`flex items-center justify-between p-2 rounded ${opt.available ? 'bg-white' : 'bg-slate-100 opacity-80'}`}>
-                        <div className="flex items-center gap-3">
-                          <input type="checkbox" disabled={!opt.available} checked={opt.selected} onChange={(e)=>{
-                            setFutureOptions(fo => fo.map((f,i)=> i===idx ? {...f, selected: e.target.checked} : f))
-                          }} />
-                          <div>
-                            <div className="text-sm font-medium">{formatJalali(opt.date)}</div>
-                            <div className="text-xs text-slate-500">{opt.available ? 'آزاد' : 'رزرو شده'}</div>
-                          </div>
-                        </div>
-                        <div className="text-sm font-medium">{selectedTime}</div>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
+    <div className="space-y-8 animate-fade-in">
+      <div className="bg-glass backdrop-blur-md rounded-3xl p-6 shadow-2xl border border-glass animate-slide-up">
+        <div className="flex items-center gap-4 mb-4">
+          <img src={arena.logo} alt={`${arena.name} logo`} className="w-16 h-16 rounded-2xl object-cover shadow-lg animate-float" />
+          <div>
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-modernBlue to-neonBlue bg-clip-text text-transparent">رزرو {arena.name}</h2>
+            <p className="text-slate-600 flex items-center gap-2">
+              <span className="inline-block w-2 h-2 bg-neonGreen rounded-full animate-pulse-slow"></span>
+              {arena.address} • {arena.city}
+            </p>
           </div>
         </div>
       </div>
-        {/* Modal for selecting future-week repeats and ball rental */}
-        {showModal && (
-          <div className="fixed inset-0 z-40 flex items-center justify-center">
-            <div className="absolute inset-0 bg-black/40" onClick={()=>{ setShowModal(false); setSelectedTime('') }} />
-            <div className="relative bg-white rounded shadow-lg w-full max-w-md p-4 z-50">
-              <h4 className="font-semibold mb-2">انتخاب‌های اضافی برای {selectedTime}</h4>
-              <div className="text-sm text-slate-600 mb-3">برای تاریخ {selectedDate ? (selectedDate.format ? selectedDate.format('YYYY/MM/DD') : new Intl.DateTimeFormat('fa-IR-u-ca-persian',{year:'numeric',month:'2-digit',day:'2-digit'}).format(selectedDate)) : ''}</div>
-              <div className="space-y-3 max-h-60 overflow-auto">
-                {modalFutureOptions.length===0 && (
-                  <div>
-                    <div className="text-sm text-slate-500">هیچ پیشنهاد هفتگی موجود نیست.</div>
-                    <div className="text-xs text-slate-400 mt-1">اگر تاریخ انتخاب نشده بود، تاریخ امروز استفاده شد؛ در غیر این صورت ممکن است هیچ هفتهٔ بعدی تا تاریخ حداکثر موجود نباشد.</div>
-                  </div>
-                )}
-                {modalFutureOptions.map((opt, idx) => (
-                  <label key={idx} className={`flex items-center justify-between p-2 rounded ${opt.available ? 'bg-white' : 'bg-slate-100 opacity-80'}`}>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="lg:col-span-2 space-y-6">
+          <div className="bg-glass backdrop-blur-md rounded-3xl p-6 shadow-2xl border border-glass animate-slide-up" style={{animationDelay: '0.2s'}}>
+            <div className="flex items-center justify-between mb-4">
+              <h4 className="text-xl font-bold text-slate-800">انتخاب تاریخ</h4>
+              <button onClick={()=>setShowCustomDate(s=>!s)} className="text-sm bg-glassDark hover:bg-glass border border-glass rounded-xl px-4 py-2 transition-all duration-200 text-neonBlue hover:text-neonPurple">
+                تاریخ دلخواه
+              </button>
+            </div>
+
+            {showCustomDate && (
+              <div className="mt-4 p-4 bg-glassDark rounded-2xl border border-glass">
+                <DatePicker
+                  calendar={persian}
+                  locale={persian_fa}
+                  value={selectedDate}
+                  onChange={(d)=>{
+                    setSelectedDate(d)
+                    setSelectedTime('')
+                  }}
+                  format="YYYY/MM/DD"
+                  minDate={new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()+7)}
+                  maxDate={new Date(2026,2,19)}
+                  inputClass="w-full p-3 border border-glass rounded-xl bg-glass backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-neonBlue focus:border-transparent"
+                />
+                <div className="text-xs text-slate-500 mt-2">حداقل تاریخ: ۷ روز پس از امروز — حداکثر: 29/12/1404</div>
+              </div>
+            )}
+          </div>
+
+          <div className="animate-slide-up" style={{animationDelay: '0.4s'}}>
+            <WeekDaysBar selectedDate={selectedDate} onSelect={(d)=>{ setSelectedDate(d); setSelectedTime('') }} />
+          </div>
+
+          <div className="bg-glass backdrop-blur-md rounded-3xl p-6 shadow-2xl border border-glass animate-slide-up" style={{animationDelay: '0.6s'}}>
+            <h4 className="text-xl font-bold mb-4 bg-gradient-to-r from-neonPurple to-modernGreen bg-clip-text text-transparent">
+              سانس‌ها برای {selectedDate ? (selectedDate.format ? selectedDate.format('YYYY/MM/DD') : new Intl.DateTimeFormat('fa-IR-u-ca-persian',{year:'numeric',month:'2-digit',day:'2-digit'}).format(selectedDate)) : '---'}
+            </h4>
+            <DailySlots slots={displayedSlots} onSelect={(t)=>{
+              let base = selectedDate
+              if(!base){
+                base = new Date()
+                setSelectedDate(base)
+              }
+              setSelectedTime(t)
+              const opts = computeFutureOptions(base, t)
+              setModalFutureOptions(opts)
+              setModalBall(false)
+              setShowModal(true)
+            }} selectedTime={selectedTime} reservations={(() => {
+              const iso = (selectedDate.format ? selectedDate.toDate().toISOString().slice(0,10) : selectedDate.toISOString().slice(0,10))
+              const allRes = getAllReservations()
+              return allRes.filter(r => r.date === iso && r.arenaId === arena.id)
+            })()} />
+          </div>
+
+          {selectedTime && (
+            <div className="bg-glass backdrop-blur-md rounded-3xl p-6 shadow-2xl border border-glass animate-slide-up" style={{animationDelay: '0.8s'}}>
+              <h4 className="text-xl font-bold mb-4 bg-gradient-to-r from-neonBlue to-modernBlue bg-clip-text text-transparent">پیشنهاد برای هفته‌های بعد</h4>
+              <div className="mb-4">
+                <button onClick={()=>{
+                  setModalFutureOptions(futureOptions.map(f => ({ ...f })))
+                  setModalBall(ballRental)
+                  setShowModal(true)
+                }} className="bg-glassDark hover:bg-glass border border-glass rounded-xl px-4 py-2 transition-all duration-200 text-neonGreen hover:text-neonBlue">
+                  پیکربندی پیشرفته
+                </button>
+              </div>
+              <div className="grid gap-3">
+                {futureOptions.length===0 && <div className="text-slate-500 bg-glassDark rounded-xl p-4 border border-glass">هیچ پیشنهادی موجود نیست.</div>}
+                {futureOptions.map((opt, idx)=> (
+                  <label key={idx} className={`flex items-center justify-between p-4 rounded-2xl border transition-all duration-200 ${opt.available ? 'bg-glassDark border-glass hover:border-neonBlue' : 'bg-slate-100 opacity-60 border-slate-300'}`}>
                     <div className="flex items-center gap-3">
-                      <input type="checkbox" disabled={!opt.available} checked={!!opt.selected} onChange={(e)=>{
-                        setModalFutureOptions(mfo => mfo.map((m,i)=> i===idx ? {...m, selected: e.target.checked} : m))
-                      }} />
-                      <div>
-                        <div className="text-sm font-medium">{formatJalali(opt.date)}</div>
-                        <div className="text-xs text-slate-500">{opt.available ? 'آزاد' : 'رزرو شده'}</div>
-                      </div>
+                      <input type="checkbox" disabled={!opt.available} checked={opt.selected} onChange={(e)=>{
+                        const newOpts = [...futureOptions]
+                        newOpts[idx].selected = e.target.checked
+                        setFutureOptions(newOpts)
+                      }} className="w-4 h-4 text-neonBlue focus:ring-neonBlue border-slate-300 rounded" />
+                      <span className={opt.available ? 'text-slate-800' : 'text-slate-500'}>{formatJalali(opt.date)}</span>
                     </div>
-                    <div className="text-sm font-medium">{selectedTime}</div>
+                    {!opt.available && <span className="text-xs text-red-500">رزرو شده</span>}
                   </label>
                 ))}
               </div>
+            </div>
+          )}
+        </div>
 
-              <div className="mt-2 flex justify-end gap-2">
-                <button onClick={()=>{
-                  // select all available weeks
-                  setModalFutureOptions(mfo => mfo.map(m => m.available ? {...m, selected: true} : m))
-                }} className="text-sm text-sportBlue hover:underline">انتخاب همهٔ هفته‌ها</button>
-              </div>
+        <aside className="animate-slide-up" style={{animationDelay: '1s'}}>
+          <BookingForm
+            price={arena.price}
+            selectedDate={selectedDate}
+            selectedTime={selectedTime}
+            futureDates={futureOptions.filter(f=>f.selected).map(f=>f.iso)}
+            onBooked={(results)=>{
+              setRefreshKey(k=>k+1)
+              setSelectedTime('')
+              setFutureOptions([])
+              setBallRental(false)
+            }}
+            ballRental={ballRental}
+            ballFee={arena.price * 0.1}
+          />
+        </aside>
+      </div>
 
-              <div className="mt-3 border-t pt-3">
-                <label className="flex items-center gap-3">
-                  <input type="checkbox" checked={modalBall} onChange={(e)=>setModalBall(e.target.checked)} />
-                  <div className="text-sm">اجاره توپ (هر سانس <span className="font-medium">50,000</span> تومان اضافی)</div>
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fade-in">
+          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={()=>setShowModal(false)} />
+          <div className="relative bg-glass backdrop-blur-md rounded-3xl p-6 shadow-2xl border border-glass w-full max-w-md animate-bounce-in">
+            <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-neonPurple to-modernGreen bg-clip-text text-transparent">پیکربندی پیشرفته</h3>
+            <div className="space-y-4">
+              <div>
+                <label className="flex items-center gap-2 mb-2">
+                  <input type="checkbox" checked={modalBall} onChange={e=>setModalBall(e.target.checked)} className="w-4 h-4 text-neonBlue focus:ring-neonBlue border-slate-300 rounded" />
+                  <span className="text-slate-700">اجاره توپ ({(arena.price * 0.1).toLocaleString('en-US')} تومان)</span>
                 </label>
               </div>
-
-              <div className="mt-4 flex items-center justify-between">
-                <div className="text-sm text-slate-600">مجموع انتخاب‌شده:</div>
-                <div className="font-medium">
-                  {(() => {
-                    const baseCount = 1 + modalFutureOptions.filter(f=>f.selected && f.available).length
-                    const baseTotal = arena.price * baseCount
-                    const ballTotal = modalBall ? (50000 * baseCount) : 0
-                    const grand = baseTotal + ballTotal
-                    return (<span>{baseCount} سانس • {new Intl.NumberFormat('en-US').format(grand)} تومان</span>)
-                  })()}
-                </div>
+              <div className="max-h-60 overflow-y-auto space-y-2">
+                {modalFutureOptions.map((opt, idx)=> (
+                  <label key={idx} className={`flex items-center justify-between p-3 rounded-xl border transition-all duration-200 ${opt.available ? 'bg-glassDark border-glass hover:border-neonBlue' : 'bg-slate-100 opacity-60 border-slate-300'}`}>
+                    <div className="flex items-center gap-3">
+                      <input type="checkbox" disabled={!opt.available} checked={opt.selected} onChange={(e)=>{
+                        const newOpts = [...modalFutureOptions]
+                        newOpts[idx].selected = e.target.checked
+                        setModalFutureOptions(newOpts)
+                      }} className="w-4 h-4 text-neonBlue focus:ring-neonBlue border-slate-300 rounded" />
+                      <span className={opt.available ? 'text-slate-800' : 'text-slate-500'}>{formatJalali(opt.date)}</span>
+                    </div>
+                    {!opt.available && <span className="text-xs text-red-500">رزرو شده</span>}
+                  </label>
+                ))}
               </div>
-
-              <div className="mt-4 flex gap-2">
+              <div className="flex gap-3 pt-4">
                 <button onClick={()=>{
-                  // confirm: apply modal choices to main state
                   setFutureOptions(modalFutureOptions)
                   setBallRental(modalBall)
                   setShowModal(false)
-                }} className="flex-1 bg-sportGreen text-white py-2 rounded">تأیید</button>
-                <button onClick={()=>{ setShowModal(false); setSelectedTime('') }} className="flex-1 bg-slate-200 py-2 rounded">انصراف</button>
+                }} className="flex-1 bg-gradient-to-r from-modernGreen to-neonGreen text-white py-3 rounded-xl hover:from-neonGreen hover:to-modernGreen transition-all duration-200 font-medium">
+                  اعمال
+                </button>
+                <button onClick={()=>setShowModal(false)} className="flex-1 bg-glassDark border border-glass text-slate-700 py-3 rounded-xl hover:bg-glass transition-all duration-200">
+                  لغو
+                </button>
               </div>
             </div>
           </div>
-        )}
-      <aside>
-        <BookingForm
-          price={arena.price}
-          selectedDate={selectedDate}
-          selectedTime={selectedTime}
-          futureDates={futureOptions.filter(f=>f.selected && f.available).map(f=>f.iso)}
-          ballRental={ballRental}
-          ballFee={50000}
-          onBooked={(results)=>{
-            // refresh reservations and UI
-            setRefreshKey(k=>k+1)
-            // clear future selections that were just booked
-            const bookedIsos = results.map(r=>r.date)
-            setFutureOptions(fo => fo.map(f => ({ ...f, selected: bookedIsos.includes(f.iso) ? false : f.selected })))
-            // reset ball rental after booking
-            setBallRental(false)
-          }}
-        />
-      </aside>
+        </div>
+      )}
     </div>
   )
 }
