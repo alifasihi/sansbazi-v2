@@ -45,9 +45,9 @@ export default function ArenaCard({arena}){
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
       </div>
       <div className="p-6">
-        <div className="flex items-center justify-center mb-4">
+        {/* <div className="flex items-center justify-center mb-4">
           <img src={arena.logo} alt={`${arena.name} logo`} className="w-20 h-20 rounded-xl object-cover shadow-lg border-2 border-white animate-float hover:animate-glow" />
-        </div>
+        </div> */}
         <div className="flex items-center gap-2 text-sm text-slate-600 mb-3 justify-center">
           <MapPinIcon className="w-4 h-4 text-neonBlue" />
           <span>{arena.address} • {arena.city}</span>
