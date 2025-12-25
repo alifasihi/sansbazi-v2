@@ -10,7 +10,7 @@
     "location": {"lat": 30.2832, "lng": 57.0745},
     "price": 600000,
     "rating": 4.6,
-    "images": ["/images/arena1-1.svg","/images/arena1-2.svg","/images/arena1-3.svg"],
+    "images": ["/images/arena1-2.jpg","/images/arena1-1.jpg","/images/arena1-3.png"],
     "amenities": ["رختکن","پارکینگ","نور خوب","کف‌پوش استاندارد"],
     "slots": [
       {"time":"09:00 - 10:30","status":"free"},
