@@ -55,18 +55,18 @@ export default function SearchBar(){
         </select>
       </div>
       <div className="flex-1 relative">
-        <CalendarDaysIcon className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-neonBlue animate-pulse-slow z-10" />
-        <DatePicker
-          calendar={persian}
-          locale={persian_fa}
-          value={date}
-          onChange={setDate}
-          className="w-full"
-          format="YYYY/MM/DD"
-          calendarPosition="bottom-right"
-          inputClass="w-full pl-10 pr-4 py-3 border border-glass rounded-xl focus:outline-none focus:ring-2 focus:ring-neonBlue focus:border-transparent transition-all duration-200 bg-glass backdrop-blur-sm hover:bg-glassDark z-10"
-        />
-      </div>
+  <CalendarDaysIcon className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-neonBlue animate-pulse-slow z-10" />
+  <DatePicker
+    calendar={persian}
+    locale={persian_fa}
+    value={date}
+    onChange={setDate}
+    className="w-full"
+    format="YYYY/MM/DD"
+    calendarPosition="top-right" 
+    inputClass="w-full pl-10 pr-4 py-3 border border-glass rounded-xl focus:outline-none focus:ring-2 focus:ring-neonBlue focus:border-transparent transition-all duration-200 bg-glass backdrop-blur-sm hover:bg-glassDark z-10"
+  />
+</div>
       <button className="bg-gradient-to-r from-modernBlue to-neonBlue text-white px-8 py-3 rounded-xl hover:from-neonBlue hover:to-modernBlue transition-all duration-200 font-medium shadow-lg hover:shadow-xl flex items-center justify-center gap-2 min-w-[120px] animate-glow">
         <MagnifyingGlassIcon className="w-5 h-5" />
         جستجو
