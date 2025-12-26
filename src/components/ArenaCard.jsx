@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { formatPrice } from '../utils/format';
-import ArenaInfoModal from './ArenaInfoModal';
-import { StarIcon, MapPinIcon, ClockIcon, PhoneIcon } from '@heroicons/react/24/solid';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { formatPrice } from "../utils/format";
+import ArenaInfoModal from "./ArenaInfoModal";
+import {
+  StarIcon,
+  MapPinIcon,
+  ClockIcon,
+  PhoneIcon,
+} from "@heroicons/react/24/solid";
 
 export default function ArenaCard({ arena }) {
   const [showInfo, setShowInfo] = useState(false);
@@ -11,10 +16,12 @@ export default function ArenaCard({ arena }) {
 
   // انتخاب تصویر اصلی (تصادفی اما ثابت بر اساس id)
   const getMainImage = () => {
-    if (!arena.images || arena.images.length === 0) return '';
+    if (!arena.images || arena.images.length === 0) return "";
     if (arena.images.length === 1) return arena.images[0];
 
-    const hash = arena.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    const hash = arena.id
+      .split("")
+      .reduce((acc, char) => acc + char.charCodeAt(0), 0);
     return arena.images[hash % arena.images.length];
   };
 
@@ -54,7 +61,9 @@ export default function ArenaCard({ arena }) {
         {/* امتیاز */}
         <div className="absolute top-3 right-3 bg-glass backdrop-blur-sm rounded-full px-3 py-1 flex items-center gap-1 border border-white/20">
           <StarIcon className="w-4 h-4 text-yellow-400 animate-pulse-slow" />
-          <span className="text-sm font-semibold text-slate-800">{arena.rating.toFixed(1)}</span>
+          <span className="text-sm font-semibold text-slate-800">
+            {arena.rating.toFixed(1)}
+          </span>
         </div>
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
@@ -65,23 +74,32 @@ export default function ArenaCard({ arena }) {
         {/* آدرس */}
         <div className="flex items-center gap-2 text-sm text-slate-600 justify-center">
           <MapPinIcon className="w-4 h-4 text-neonBlue" />
-          <span>{arena.address} • {arena.city}</span>
+          <span>
+            {arena.address} • {arena.city}
+          </span>
         </div>
 
         {/* نوع ورزش و قیمت */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <ClockIcon className="w-4 h-4 text-sportGreen" />
-            <span className="text-sm text-slate-700">{arena.sportTypeFa || arena.sportType}</span>
+            <span className="text-sm text-slate-700">
+              {arena.sportTypeFa || arena.sportType}
+            </span>
           </div>
-          <div className="text-lg font-bold text-modernGreen">{formatPrice(arena.pricePerSlot || arena.price)}</div>
+          <div className="text-lg font-bold text-modernGreen">
+            {formatPrice(arena.pricePerSlot || arena.price)}
+          </div>
         </div>
 
         {/* تلفن */}
         {arena.phone && (
           <div className="flex items-center gap-2 text-sm text-slate-600 justify-center">
             <PhoneIcon className="w-4 h-4 text-neonGreen" />
-            <a href={`tel:${arena.phone}`} className="hover:text-neonBlue transition-colors">
+            <a
+              href={`tel:${arena.phone}`}
+              className="hover:text-neonBlue transition-colors"
+            >
               {arena.phone}
             </a>
           </div>
@@ -114,18 +132,21 @@ export default function ArenaCard({ arena }) {
         {/* سانس‌های امروز */}
         {arena.slots && arena.slots.length > 0 && (
           <div className="space-y-2">
-            <div className="text-xs text-slate-500 text-center">سانس‌های امروز:</div>
+            <div className="text-xs text-slate-500 text-center">
+              سانس‌های امروز:
+            </div>
             <div className="flex flex-wrap gap-2 justify-center">
               {arena.slots.map((slot, i) => (
                 <span
                   key={i}
                   className={`px-3 py-1.5 rounded-lg text-xs font-medium border ${
-                    slot.status === 'free'
-                      ? 'bg-green-50 text-modernGreen border-modernGreen'
-                      : 'bg-red-50 text-red-600 border-red-300'
+                    slot.status === "free"
+                      ? "bg-green-50 text-modernGreen border-modernGreen"
+                      : "bg-red-50 text-red-600 border-red-300"
                   }`}
                 >
-                  {slot.startTime} - {slot.endTime} {slot.status === 'free' ? 'آزاد' : 'رزرو شده'}
+                  {slot.startTime} - {slot.endTime}{" "}
+                  {slot.status === "free" ? "آزاد" : "رزرو شده"}
                 </span>
               ))}
             </div>
@@ -158,7 +179,11 @@ export default function ArenaCard({ arena }) {
       </div>
 
       {/* مودال اطلاعات سالن */}
-      <ArenaInfoModal arena={arena} open={showInfo} onClose={() => setShowInfo(false)} />
+      <ArenaInfoModal
+        arena={arena}
+        open={showInfo}
+        onClose={() => setShowInfo(false)}
+      />
 
       {/* مودال تصویر بزرگ */}
       {showImageModal && (

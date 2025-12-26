@@ -1,90 +1,132 @@
-import React from 'react'
-import { XMarkIcon, MapPinIcon, PhoneIcon, ClockIcon } from '@heroicons/react/24/solid'
+import React from "react";
+import { XMarkIcon, StarIcon, MapPinIcon, PhoneIcon, ClockIcon } from "@heroicons/react/24/solid";
+import { formatPrice } from "../utils/format";
 
-export default function ArenaInfoModal({arena, open, onClose}){
-  if(!open || !arena) return null
+export default function ArenaInfoModal({ arena, open, onClose }) {
+  if (!open || !arena) return null;
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fade-in">
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative bg-glass backdrop-blur-md rounded-3xl shadow-2xl w-full max-w-lg p-8 z-50 animate-bounce-in border border-glass">
-        <div className="flex items-start justify-between mb-8">
-          <div className="flex items-center gap-4">
-            <img src={arena.logo} alt={`${arena.name} logo`} className="w-12 h-12 rounded-2xl object-cover shadow-lg animate-float" />
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-modernBlue to-neonBlue bg-clip-text text-transparent">اطلاعات {arena.name}</h3>
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xl"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white/95 backdrop-blur-2xl rounded-3xl shadow-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto relative"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* دکمه بستن */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 z-10 bg-white/80 hover:bg-white rounded-full p-3 shadow-2xl transition-all duration-300 hover:scale-110"
+        >
+          <XMarkIcon className="w-8 h-8 text-slate-700" />
+        </button>
+
+        {/* هدر مودال */}
+        <div className="p-8 md:p-12 text-center">
+          <img
+            src={arena.logo || "https://via.placeholder.com/150?text=لوگو"}
+            alt={arena.name}
+            className="w-32 h-32 mx-auto rounded-3xl object-cover shadow-2xl mb-6 ring-4 ring-neonBlue/30"
+          />
+          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-800 mb-4">
+            {arena.name}
+          </h2>
+          <p className="text-xl text-neonBlue font-bold mb-6">
+            {arena.sportTypeFa || arena.sportType}
+          </p>
+
+          {/* امتیاز */}
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <StarIcon className="w-8 h-8 text-yellow-500 animate-pulse" />
+            <span className="text-2xl font-extrabold text-slate-800">
+              {arena.rating?.toFixed(1) || "—"}
+            </span>
+            {arena.reviewCount && (
+              <span className="text-lg text-slate-600">
+                ({arena.reviewCount} نظر)
+              </span>
+            )}
           </div>
-          <button onClick={onClose} className="p-3 rounded-2xl hover:bg-glassDark transition-all duration-200 border border-glass hover:border-neonBlue">
-            <XMarkIcon className="w-6 h-6 text-slate-500 hover:text-neonBlue transition-colors duration-200" />
-          </button>
         </div>
-        <div className="space-y-6 text-slate-700">
-          <div className="flex items-start gap-4 bg-glassDark rounded-2xl p-4 border border-glass">
-            <MapPinIcon className="w-6 h-6 text-red-500 mt-1 flex-shrink-0 animate-pulse-slow" />
-            <div>
-              <strong className="text-slate-800 block mb-1">آدرس</strong>
-              <span className="text-slate-600">{arena.address}</span>
-            </div>
+
+        {/* اطلاعات اصلی */}
+        <div className="px-8 pb-12 space-y-6 text-lg">
+          {/* آدرس */}
+          <div className="flex items-center gap-4 justify-center text-slate-700">
+            <MapPinIcon className="w-7 h-7 text-neonBlue flex-shrink-0" />
+            <span>
+              {arena.address}، {arena.city}
+            </span>
           </div>
-          {arena.location && (
-            <div className="flex items-center gap-4 bg-glassDark rounded-2xl p-4 border border-glass">
-              <MapPinIcon className="w-6 h-6 text-blue-500 flex-shrink-0 animate-pulse-slow" />
-              <a
-                href={`https://www.google.com/maps?q=${arena.location.lat},${arena.location.lng}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-neonBlue hover:text-modernBlue transition-colors duration-200 font-medium hover:underline"
-              >
-                نمایش در نقشهٔ گوگل
+
+          {/* تلفن */}
+          {arena.phone && (
+            <div className="flex items-center gap-4 justify-center text-slate-700">
+              <PhoneIcon className="w-7 h-7 text-neonGreen flex-shrink-0" />
+              <a href={`tel:${arena.phone}`} className="hover:text-neonBlue transition-colors font-medium">
+                {arena.phone}
               </a>
             </div>
           )}
-          {arena.phone && (
-            <div className="flex items-center gap-4 bg-glassDark rounded-2xl p-4 border border-glass">
-              <PhoneIcon className="w-6 h-6 text-green-500 flex-shrink-0 animate-pulse-slow" />
-              <div>
-                <strong className="text-slate-800 block mb-1">تلفن</strong>
-                <a className="text-neonGreen hover:text-modernGreen transition-colors duration-200 font-medium hover:underline" href={`tel:${arena.phone}`}>{arena.phone}</a>
-              </div>
-            </div>
-          )}
-          {arena.sportType && (
-            <div className="flex items-center gap-4 bg-glassDark rounded-2xl p-4 border border-glass">
-              <div className="w-6 h-6 bg-neonBlue rounded-full flex-shrink-0 animate-pulse-slow"></div>
-              <div>
-                <strong className="text-slate-800 block mb-1">نوع ورزش</strong>
-                <span className="text-neonBlue font-medium">{arena.sportType}</span>
-              </div>
-            </div>
-          )}
-          <div className="bg-glassDark rounded-2xl p-4 border border-glass">
-            <strong className="text-slate-800 block mb-3 flex items-center gap-2">
-              <span className="inline-block w-3 h-3 bg-neonPurple rounded-full animate-pulse-slow"></span>
-              امکانات
-            </strong>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              {arena.amenities && arena.amenities.map((am,i)=>(
-                <li key={i} className="flex items-center gap-2 text-sm text-slate-600">
-                  <span className="inline-block w-2 h-2 bg-neonGreen rounded-full animate-pulse-slow"></span>
-                  {am}
-                </li>
-              ))}
-            </ul>
-          </div>
+
+          {/* ساعات کاری */}
           {arena.openingHours && (
-            <div className="flex items-start gap-4 bg-glassDark rounded-2xl p-4 border border-glass">
-              <ClockIcon className="w-6 h-6 text-purple-500 mt-1 flex-shrink-0 animate-pulse-slow" />
-              <div>
-                <strong className="text-slate-800 block mb-1">ساعات کاری</strong>
-                <span className="text-slate-600">{arena.openingHours}</span>
+            <div className="flex items-center gap-4 justify-center text-slate-700">
+              <ClockIcon className="w-7 h-7 text-neonPurple flex-shrink-0" />
+              <span>
+                {arena.openingHours.start} تا {arena.openingHours.end}
+              </span>
+            </div>
+          )}
+
+          {/* قیمت */}
+          <div className="text-center py-6 bg-glass/60 rounded-3xl border border-glass">
+            <p className="text-sm text-slate-600 mb-2">قیمت هر سانس</p>
+            <p className="text-4xl font-extrabold bg-gradient-to-r from-modernGreen to-neonGreen bg-clip-text text-transparent">
+              {formatPrice(arena.pricePerSlot || arena.price)}
+            </p>
+          </div>
+
+          {/* امکانات */}
+          {arena.amenities && arena.amenities.length > 0 && (
+            <div className="text-center">
+              <p className="font-bold text-slate-800 mb-4 text-xl">امکانات سالن</p>
+              <div className="flex flex-wrap gap-4 justify-center">
+                {arena.amenities.map((amenity, i) => (
+                  <span
+                    key={i}
+                    className="px-6 py-3 bg-glass/70 border border-glass rounded-2xl text-slate-700 font-medium shadow-sm"
+                  >
+                    {amenity}
+                  </span>
+                ))}
               </div>
             </div>
           )}
-        </div>
-        <div className="mt-8 text-left">
-          <button onClick={onClose} className="bg-gradient-to-r from-modernGreen to-neonGreen text-white py-4 px-8 rounded-2xl hover:from-neonGreen hover:to-modernGreen transition-all duration-300 font-medium shadow-xl hover:shadow-2xl animate-glow transform hover:scale-105">
-            باشه
-          </button>
+
+          {/* توضیحات */}
+          {arena.description && (
+            <div className="text-center">
+              <p className="font-bold text-slate-800 mb-4 text-xl">درباره سالن</p>
+              <p className="text-slate-600 leading-relaxed text-base md:text-lg px-4">
+                {arena.description}
+              </p>
+            </div>
+          )}
+
+          {/* دکمه رزرو در مودال */}
+          <div className="text-center mt-10">
+            <Link
+              to={`/booking/${arena.id}`}
+              onClick={onClose}
+              className="inline-block px-12 py-6 rounded-2xl bg-gradient-to-r from-modernGreen via-sportGreen to-neonGreen text-white text-2xl font-extrabold shadow-2xl hover:shadow-neonGreen/60 transition-all duration-500 hover:scale-110"
+            >
+              رزرو سانس
+            </Link>
+          </div>
         </div>
       </div>
     </div>
-  )
+  );
 }

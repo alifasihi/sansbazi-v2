@@ -1,98 +1,278 @@
 [
   {
-    "id": "arena-1",
+    "id": "arena-2",
     "name": "سالن ورزشی آزادی کرمان",
     "city": "کرمان",
     "sportType": "futsal",
     "sportTypeFa": "فوتسال",
     "address": "بلوار شهید بهشتی، پلاک ۱۲",
     "phone": "034-12345678",
-    "location": {
-      "lat": 30.2832,
-      "lng": 57.0745
-    },
+    "location": { "lat": 30.2832, "lng": 57.0745 },
     "logo": "/images/logos/sansbazi_logo.png",
     "images": [
-      "/images/arena1-1.jpg",
-      "/images/arena1-2.jpg",
-      "/images/arena1-3.png"
+      "https://bsg-i.nbxc.com/product/bb/e9/ae/eb555d9ff07a2673e32333acc2.jpg@95Q.webp","https://media.licdn.com/dms/image/v2/D5612AQE7ES9tbzdbBg/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1659948969343?e=2147483647&v=beta&t=2jRSJXy2-vDNsGmIzOrmnQoM-Ely-XJqpXFumkw3H9c","https://wanhesport.com/wp-content/uploads/2022/04/futsal-field-wanhesport.jpg"
+
     ],
     "pricePerSlot": 600000,
     "currency": "IRR",
     "rating": 4.6,
     "reviewCount": 128,
     "isIndoor": true,
-    "openingHours": {
-      "start": "08:00",
-      "end": "23:00"
-    },
-    "amenities": [
-      "رختکن",
-      "پارکینگ",
-      "نور خوب",
-      "کف‌پوش استاندارد"
-    ],
-    "description": "سالن مجهز فوتسال با کف‌پوش استاندارد و نور مناسب برای بازی‌های حرفه‌ای و دوستانه.",
+    "openingHours": { "start": "08:00", "end": "23:00" },
+    "amenities": ["رختکن", "پارکینگ", "نور خوب", "کف‌پوش استاندارد"],
+    "description": "سالن مجهز فوتسال با کف‌پوش استاندارد و نور مناسب.",
     "slots": [
-      {
-        "startTime": "09:00",
-        "endTime": "10:30",
-        "status": "free"
-      },
-      {
-        "startTime": "10:30",
-        "endTime": "12:00",
-        "status": "booked"
-      },
-      {
-        "startTime": "12:00",
-        "endTime": "13:30",
-        "status": "free"
-      }
+      { "startTime": "09:00", "endTime": "10:30", "status": "free" },
+      { "startTime": "10:30", "endTime": "12:00", "status": "booked" },
+      { "startTime": "12:00", "endTime": "13:30", "status": "free" }
     ]
   },
   {
-    "id": "arena-2",
-    "name": "دنا اسپورت کرمان",
+    "id": "arena-1",
+    "name": "دنا اسپورت",
     "city": "کرمان",
     "sportType": "basketball",
     "sportTypeFa": "بسکتبال",
-    "address": "خیابان امام خمینی، نبش کوچهٔ ۱۲",
+    "address": "خیابان امام خمینی، نبش کوچه ۱۲",
     "phone": "034-22334455",
-    "location": {
-      "lat": 30.2915,
-      "lng": 57.0832
-    },
+    "location": { "lat": 30.2915, "lng": 57.0832 },
     "logo": "/images/logos/sansbazi_logo.png",
-    "images": [
-      "/images/arenas/arena2-1.jpg",
-      "/images/arenas/arena2-2.jpg"
-    ],
+    "images": ["/images/arena1-1.jpg",
+      "/images/arena1-2.jpg",
+      "/images/arena1-3.png"],
     "pricePerSlot": 650000,
     "currency": "IRR",
     "rating": 4.2,
     "reviewCount": 85,
     "isIndoor": true,
-    "openingHours": {
-      "start": "08:00",
-      "end": "22:00"
-    },
-    "amenities": [
-      "پارکینگ",
-      "دوش",
-      "زمین چوبی"
-    ],
+    "openingHours": { "start": "08:00", "end": "22:00" },
+    "amenities": ["پارکینگ", "دوش", "زمین چوبی"],
     "slots": [
-      {
-        "startTime": "17:00",
-        "endTime": "18:30",
-        "status": "free"
-      },
-      {
-        "startTime": "18:30",
-        "endTime": "20:00",
-        "status": "free"
-      }
+      { "startTime": "17:00", "endTime": "18:30", "status": "free" },
+      { "startTime": "18:30", "endTime": "20:00", "status": "free" }
+    ]
+  },
+  {
+    "id": "mock-arena-3",
+    "name": "سالن تست آلفا",
+    "city": "کرمان",
+    "sportType": "futsal",
+    "sportTypeFa": "فوتسال",
+    "address": "خیابان تست ۱، پلاک ۱۰",
+    "phone": "034-00000001",
+    "location": { "lat": 30.2801, "lng": 57.0601 },
+    "logo": "/images/logos/sansbazi_logo.png",
+    "images": ["https://meettfit.com/wp-content/uploads/2025/05/futsal-court-with-players-in-action.jpg", "https://www.sports-floor.com/data/watermark/20240924/66f2579980085.jpg"],
+    "pricePerSlot": 510000,
+    "currency": "IRR",
+    "rating": 4.1,
+    "reviewCount": 21,
+    "isIndoor": true,
+    "openingHours": { "start": "08:00", "end": "22:00" },
+    "amenities": ["رختکن", "پارکینگ"],
+    "description": "داده آزمایشی برای تست کارت سالن.",
+    "slots": [
+      { "startTime": "09:00", "endTime": "10:30", "status": "free" },
+      { "startTime": "10:30", "endTime": "12:00", "status": "booked" }
+    ]
+  },
+  {
+    "id": "mock-arena-2",
+    "name": "زمین تست بتا",
+    "city": "رفسنجان",
+    "sportType": "football",
+    "sportTypeFa": "فوتبال",
+    "address": "بلوار فیک، کوچه تست",
+    "phone": "034-00000002",
+    "location": { "lat": 30.4011, "lng": 55.9902 },
+    "logo": "/images/logos/sansbazi_logo.png",
+    "images": ["https://www.hallgruppen.com/wp-content/uploads/2022/06/1-sport-structure-1thumb-scaled.jpg","https://www.llentab.com/wp-content/uploads/SE1003_sollentuna017-exp.jpg"],
+    "pricePerSlot": 780000,
+    "currency": "IRR",
+    "rating": 3.8,
+    "reviewCount": 9,
+    "isIndoor": false,
+    "openingHours": { "start": "07:00", "end": "21:00" },
+    "amenities": ["چمن مصنوعی"],
+    "slots": [
+      { "startTime": "16:00", "endTime": "17:30", "status": "free" }
+    ]
+  },
+  {
+    "id": "mock-arena-3",
+    "name": "باشگاه تست گاما",
+    "city": "سیرجان",
+    "sportType": "basketball",
+    "sportTypeFa": "بسکتبال",
+    "address": "خیابان نمونه، پلاک ۳",
+    "phone": "034-00000003",
+    "location": { "lat": 29.4502, "lng": 55.6703 },
+    "logo": "/images/logos/sansbazi_logo.png",
+    "images": ["https://www.highlifehighland.com/irasc/wp-content/uploads/sites/188/2023/04/games-hall-IRASC-630x300.jpeg","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjMETMEzjsefXUnahdiofILSNZqsEsW-GT6g&s"],
+    "pricePerSlot": 620000,
+    "currency": "IRR",
+    "rating": 4.4,
+    "reviewCount": 34,
+    "isIndoor": true,
+    "openingHours": { "start": "09:00", "end": "23:00" },
+    "amenities": ["زمین چوبی", "نور تستی"],
+    "slots": [
+      { "startTime": "18:00", "endTime": "19:30", "status": "booked" },
+      { "startTime": "19:30", "endTime": "21:00", "status": "free" }
+    ]
+  },
+  {
+    "id": "mock-arena-4",
+    "name": "سالن تست دلتا",
+    "city": "بم",
+    "sportType": "volleyball",
+    "sportTypeFa": "والیبال",
+    "address": "مجموعه فیک، سالن شماره ۲",
+    "phone": "034-00000004",
+    "location": { "lat": 29.1051, "lng": 58.3504 },
+    "logo": "//images/logos/sansbazi_logo.png",
+    "images": ["https://upload.wikimedia.org/wikipedia/commons/f/f1/Azadi_Volleyball_Hall_in_Tehran.png","https://www-old.cev.eu/NewsImages/29405/Original/Day%201.jpg"],
+    "pricePerSlot": 470000,
+    "currency": "IRR",
+    "rating": 3.5,
+    "reviewCount": 12,
+    "isIndoor": true,
+    "openingHours": { "start": "10:00", "end": "20:00" },
+    "amenities": ["کف‌پوش تستی"],
+    "slots": [
+      { "startTime": "15:00", "endTime": "16:30", "status": "free" }
+    ]
+  },
+  {
+    "id": "mock-arena-5",
+    "name": "مرکز ورزشی اپسیلون",
+    "city": "زرند",
+    "sportType": "handball",
+    "sportTypeFa": "هندبال",
+    "address": "خیابان ساختگی",
+    "phone": "034-00000005",
+    "location": { "lat": 30.8105, "lng": 56.5605 },
+    "logo": "/images/logos/sansbazi_logo.png",
+    "images": ["https://www.qatarhandball2015.com/wp-content/uploads/2025/09/handball-lights-led.jpg","https://www.dxflor.com/uploads/handball-court-11.jpg"],
+    "pricePerSlot": 430000,
+    "currency": "IRR",
+    "rating": 4.0,
+    "reviewCount": 18,
+    "isIndoor": true,
+    "openingHours": { "start": "08:30", "end": "21:30" },
+    "amenities": ["پارکینگ"],
+    "slots": [
+      { "startTime": "17:00", "endTime": "18:30", "status": "free" }
+    ]
+  },
+  {
+    "id": "mock-arena-6",
+    "name": "باشگاه تست زتا",
+    "city": "جیرفت",
+    "sportType": "futsal",
+    "sportTypeFa": "فوتسال",
+    "address": "کوچه آزمایشی",
+    "phone": "034-00000006",
+    "location": { "lat": 28.6706, "lng": 57.7306 },
+    "logo": "/images/logos/sansbazi_logo.png",
+    "images": ["https://www.dxflor.com/uploads/16-300x300.jpg"],
+    "pricePerSlot": 495000,
+    "currency": "IRR",
+    "rating": 4.6,
+    "reviewCount": 77,
+    "isIndoor": true,
+    "openingHours": { "start": "09:00", "end": "23:00" },
+    "amenities": ["نور خوب", "رختکن"],
+    "slots": [
+      { "startTime": "20:00", "endTime": "21:30", "status": "booked" }
+    ]
+  },
+  {
+    "id": "mock-arena-7",
+    "name": "زمین تست اتا",
+    "city": "کرمان",
+    "sportType": "tennis",
+    "sportTypeFa": "تنیس",
+    "address": "خیابان تمرینی",
+    "phone": "034-00000007",
+    "location": { "lat": 30.2907, "lng": 57.0707 },
+    "logo": "/images/logos/sansbazi_logo.png",
+    "images": ["https://www.invitedclubs.com/globalassets/the-downtown-clubs--the-met--center-club/_images/downtown-club-at-met_tennis_006_1920.jpg","https://www.actionfloors.com/wp-content/uploads/2022/01/pittsburg-mellon-dome-courts.jpg"],
+    "pricePerSlot": 720000,
+    "currency": "IRR",
+    "rating": 4.2,
+    "reviewCount": 29,
+    "isIndoor": false,
+    "openingHours": { "start": "07:00", "end": "20:00" },
+    "amenities": ["زمین استاندارد"],
+    "slots": [
+      { "startTime": "08:00", "endTime": "09:30", "status": "free" }
+    ]
+  },
+  {
+    "id": "mock-arena-8",
+    "name": "سالن تست تتا",
+    "city": "شهربابک",
+    "sportType": "badminton",
+    "sportTypeFa": "بدمینتون",
+    "address": "خیابان نمونه ۸",
+    "phone": "034-00000008",
+    "location": { "lat": 30.1208, "lng": 55.1108 },
+    "logo": "/images/logos/sansbazi_logo.png",
+    "images": ["https://lkmfloor.com/7921694737999_-pic/","https://shadecoindia.com/wp-content/uploads/2020/01/Badminton-Court-Shade-1.jpeg"],
+    "pricePerSlot": 360000,
+    "currency": "IRR",
+    "rating": 3.9,
+    "reviewCount": 14,
+    "isIndoor": true,
+    "openingHours": { "start": "11:00", "end": "22:00" },
+    "amenities": ["نور تستی"],
+    "slots": [
+      { "startTime": "19:00", "endTime": "20:00", "status": "free" }
+    ]
+  },
+  {
+    "id": "mock-arena-9",
+    "name": "باشگاه تست یوتا",
+    "city": "کوهبنان",
+    "sportType": "gym",
+    "sportTypeFa": "بدنسازی",
+    "address": "خیابان تمرین",
+    "phone": "034-00000009",
+    "location": { "lat": 31.4109, "lng": 56.2809 },
+    "logo": "/images/logos/sansbazi_logo.png",
+    "images": ["https://campusrecmag.com/wp-content/uploads/2020/03/Cardio-Zone-1.jpg","https://campusrecmag.com/wp-content/uploads/2020/03/CardioZone-2.jpg","https://campusrecmag.com/wp-content/uploads/2020/03/Strength-Zone-Wide-Shot.jpg"],
+    "pricePerSlot": 280000,
+    "currency": "IRR",
+    "rating": 4.8,
+    "reviewCount": 102,
+    "isIndoor": true,
+    "openingHours": { "start": "06:00", "end": "23:30" },
+    "amenities": ["دوش", "رختکن"],
+    "slots": [
+      { "startTime": "06:30", "endTime": "08:00", "status": "free" }
+    ]
+  },
+  {
+    "id": "mock-arena-10",
+    "name": "سالن تست کاپا",
+    "city": "کرمان",
+    "sportType": "futsal",
+    "sportTypeFa": "فوتسال",
+    "address": "بلوار آزمایش",
+    "phone": "034-00000010",
+    "location": { "lat": 30.3001, "lng": 57.0901 },
+    "logo": "/images/logos/sansbazi_logo.png",
+    "images": ["https://d26itsb5vlqdeq.cloudfront.net//image/0B144A22-C874-A75A-E734EE7569D84B43","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSw_emkMNTPMaKGr9TR_tYTSWX8zv2W4Vi7aA&s"],
+    "pricePerSlot": 530000,
+    "currency": "IRR",
+    "rating": 3.6,
+    "reviewCount": 6,
+    "isIndoor": true,
+    "openingHours": { "start": "08:00", "end": "21:00" },
+    "amenities": [],
+    "slots": [
+      { "startTime": "13:00", "endTime": "14:30", "status": "free" }
     ]
   }
 
