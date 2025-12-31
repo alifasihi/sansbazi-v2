@@ -66,8 +66,26 @@ export function seedRandomReservations({ days = 14, density = 0.22 } = {}){
       })
     }
 
-    save(res)
-    return res
+    // Merge with existing reservations, avoiding duplicates based on arenaId, date, and time
+    const existingMap = new Map()
+    if(existing && existing.length > 0){
+      existing.forEach(r => {
+        const key = `${r.arenaId}_${r.date}_${r.time}`
+        existingMap.set(key, r)
+      })
+    }
+
+    // Add new reservations only if they don't already exist
+    res.forEach(r => {
+      const key = `${r.arenaId}_${r.date}_${r.time}`
+      if(!existingMap.has(key)){
+        existingMap.set(key, r)
+      }
+    })
+
+    const merged = Array.from(existingMap.values())
+    save(merged)
+    return merged
   }catch(e){
     return load()
   }

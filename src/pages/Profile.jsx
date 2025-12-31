@@ -89,7 +89,7 @@ export default function Profile(){
                   {r.extraBall && (
                     <div className="flex items-center gap-2 text-sm text-slate-500 mt-2">
                       <span className="inline-block w-2 h-2 bg-neonPurple rounded-full animate-pulse-slow"></span>
-                      اجاره توپ: {r.extraFee.toLocaleString('en-US')} تومان
+                      اجاره توپ: {(r.extraFee || 0).toLocaleString('en-US')} تومان
                     </div>
                   )}
                 </div>

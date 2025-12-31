@@ -82,7 +82,7 @@ export default function BookingForm({
         });
       });
 
-      alert(`رزرو ${datesToBook.length} سانس با موفقیت ثبت شد!\nمبلغ کل: ${formatPrice(grandTotal)} تومان`);
+      alert(`رزرو ${datesToBook.length} سانس با موفقیت ثبت شد!\nمبلغ کل: ${formatPrice(grandTotal)}`);
 
       if (onBooked) onBooked();
     } catch (err) {
@@ -151,20 +151,20 @@ export default function BookingForm({
         <div className="space-y-6">
           <div className="flex justify-between text-xl">
             <span className="text-slate-700">هزینه سالن ({sessionsCount} سانس)</span>
-            <span className="font-bold text-slate-800">{formatPrice(baseTotal)} تومان</span>
+            <span className="font-bold text-slate-800">{formatPrice(baseTotal)}</span>
           </div>
 
           {ballRental && (
             <div className="flex justify-between text-xl">
               <span className="text-slate-700">اجاره توپ</span>
-              <span className="font-bold text-sportGreen">{formatPrice(ballTotal)} تومان</span>
+              <span className="font-bold text-sportGreen">{formatPrice(ballTotal)}</span>
             </div>
           )}
 
           <div className="pt-6 border-t-2 border-glass flex justify-between items-center">
             <span className="text-2xl font-extrabold text-slate-800">مبلغ نهایی:</span>
             <span className="text-4xl font-extrabold bg-gradient-to-r from-modernGreen to-neonGreen bg-clip-text text-transparent">
-              {formatPrice(grandTotal)} تومان
+              {formatPrice(grandTotal)}
             </span>
           </div>
         </div>

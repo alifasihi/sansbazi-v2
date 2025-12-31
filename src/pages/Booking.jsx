@@ -76,7 +76,7 @@ export default function Booking() {
     } else {
       setFutureOptions([]);
     }
-  }, [selectedDate, selectedTime, refreshKey]);
+  }, [selectedDate, selectedTime, refreshKey, arena.id]);
 
   const formatJalali = (d) => {
     const date = d.toDate ? d.toDate() : d;

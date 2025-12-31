@@ -16,7 +16,7 @@ export default function SearchBar(){
   function onSearch(e){
     e.preventDefault()
     // Convert selected Jalali date to ISO YYYY-MM-DD (Gregorian) for query
-    const dateStr = date ? date.toDate().toISOString().slice(0,10) : ''
+    const dateStr = date ? (date.toDate ? date.toDate() : date).toISOString().slice(0,10) : ''
     const q = new URLSearchParams({city, sport, date: dateStr}).toString()
     navigate('/list?' + q)
   }
@@ -63,7 +63,7 @@ export default function SearchBar(){
     onChange={setDate}
     className="w-full"
     format="YYYY/MM/DD"
-    calendarPosition="top-right" 
+    calendarPosition="top-right"
     inputClass="w-full pl-10 pr-4 py-3 border border-glass rounded-xl focus:outline-none focus:ring-2 focus:ring-neonBlue focus:border-transparent transition-all duration-200 bg-glass backdrop-blur-sm hover:bg-glassDark z-10"
   />
 </div>
